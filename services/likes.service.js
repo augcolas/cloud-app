@@ -5,19 +5,28 @@ const client = await clientPromise;
 
 const db = client.db(ConfigService.database.dbName);
 
-export const getLikes = async (id) => {
-    const likes = await db.collection("likes").findOne({idTMDB: id});
+export const getLikes = async (id,type) => {
+    const likes = await db.collection("likes").findOne(
+        {
+            idTMDB: id,
+            type: type
+        });
 
     return { status: 200, data: { likes: likes } };
 }
 
-export const updateLikes = async (id) => {
-    const like = await db.collection("likes").findOne({idTMDB: id});
+export const updateLikes = async (id,type) => {
+    const like = await db.collection("likes").findOne({
+        idTMDB: id,
+        type: type
+    });
     let resMongo, data;
 
     if (like) {
-        resMongo = await db.collection("likes").updateOne(
-            {idTMDB: id},
+        resMongo = await db.collection("likes").updateOne({
+                idTMDB: id,
+                type: type
+            },
             { $inc: { likeCounter : 1 } }
         )
         data = {
@@ -31,7 +40,8 @@ export const updateLikes = async (id) => {
         resMongo = await db.collection("likes").insertOne(
             {
                 idTMDB: id,
-                likeCounter: 1
+                likeCounter: 1,
+                type: type
             }
         )
         data = {
@@ -43,12 +53,19 @@ export const updateLikes = async (id) => {
     }
 }
 
-export const getLikedMovies = async (max_results = 0) => {
-    const liked_movies = await db.collection("likes").find({likeCounter: { $gt: 0 }}).limit(max_results).toArray();
-    return liked_movies.map(movie => {
+export const getLiked = async (max_results = 0, type) => {
+    const liked = await db.collection("likes")
+        .find({
+            likeCounter: { $gt: 0 },
+            type: type
+        })
+        .limit(max_results)
+        .toArray();
+
+    return liked.map(elem => {
         return {
-            id: movie.idTMDB,
-            likeCounter: movie.likeCounter
+            id: elem.idTMDB,
+            likeCounter: elem.likeCounter
         }
     });
 }

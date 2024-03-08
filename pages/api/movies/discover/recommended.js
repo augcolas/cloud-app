@@ -1,5 +1,5 @@
-import { getLikedMovies } from '/services/movies/likes.service';
-import { getRecommendations } from "../../../../services/movies/movies.service";
+import { getLiked } from '/services/likes.service';
+import { getRecommendations } from "/services/movies/movies.service";
 
 /**
  * @swagger
@@ -11,7 +11,7 @@ import { getRecommendations } from "../../../../services/movies/movies.service";
  *              description: Success Response
  */
 export default async function handler(req, res) {
-    const liked_movies = await getLikedMovies(10);
+    const liked_movies = await getLiked(10, 'movie');
     const recommended_movies = [];
 
     for (const movie of liked_movies) {
