@@ -6,25 +6,6 @@ const getOptions = {
     headers: ConfigService.themoviedb.headers
 };
 
-
-export const searchMovies = async (query, page= null) => {
-    const url = new URL(ConfigService.themoviedb.urls.search);
-
-    url.searchParams.append('query', query);
-    page !== null ? url.searchParams.append('page', page) : null;
-
-
-    const apiResponse = await fetch(url, getOptions)
-        .then(r => r.json())
-        .catch(err => console.error('error:' + err));
-
-    if(apiResponse.success === false){
-        return handleError(apiResponse);
-    }
-
-    return { status: 200, data: apiResponse.results };
-}
-
 export const getMovies = async (params= null) => {
     let url = new URL(ConfigService.themoviedb.urls.discover);
 

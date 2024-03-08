@@ -26,7 +26,10 @@ export const updateLikes = async (id) => {
         return { status: 201, data: data };
     } else {
         resMongo = await db.collection("likes").insertOne(
-            {idTMDB: id, likeCounter: 0}
+            {
+                idTMDB: id,
+                likeCounter: 1
+            }
         )
         data = {
             action: 'likeCounter created',
