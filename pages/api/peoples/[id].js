@@ -11,7 +11,7 @@ import { getLikes } from "/services/likes.service";
  *          required: true
  *          schema:
  *              type: string
- *              default: 0
+ *              default: 1
  *          description: people id
  *      description: Returns a people
  *      responses:

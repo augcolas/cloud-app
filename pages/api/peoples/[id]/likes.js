@@ -1,8 +1,9 @@
 import { getLikes, updateLikes } from "/services/likes.service";
 
+
 /**
  * @swagger
- *  /api/series/{id}/likes:
+ *  /api/peoples/{id}/likes:
  *      patch:
  *          parameters:
  *            - in: path
@@ -10,9 +11,9 @@ import { getLikes, updateLikes } from "/services/likes.service";
  *              required: true
  *              schema:
  *                  type: string
- *                  default: 59941
- *              description: serie id
- *          description: Updates the likes of a serie
+ *                  default: 1
+ *              description: people id
+ *          description: Updates the likes of a people
  *          responses:
  *              200:
  *                  description: Success Response
@@ -23,9 +24,9 @@ import { getLikes, updateLikes } from "/services/likes.service";
  *              required: true
  *              schema:
  *                  type: string
- *                  default: 59941
- *              description: serie id
- *          description: Returns the likes of a serie
+ *                  default: 1
+ *              description: people id
+ *          description: Returns the likes of a people
  *          responses:
  *              200:
  *                  description: Success Response
@@ -34,16 +35,15 @@ export default async function handler(req, res) {
 
     const id = parseInt(req.query.id, 10);
 
-
     switch (req.method) {
 
         case "PATCH":
-            const response = await updateLikes(id, 'serie');
+            const response = await updateLikes(id, 'people');
             res.status(201).json(response);
             break;
 
         case "GET":
-            const likes = await getLikes(id, 'serie');
+            const likes = await getLikes(id, 'people');
 
             if(likes){
                 res.status(200).json(likes);
