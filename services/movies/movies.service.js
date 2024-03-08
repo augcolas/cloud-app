@@ -71,6 +71,23 @@ export const getRecommendations = async (id) => {
         return apiResponse.results;
 }
 
+
+export const getTopRatedMovies = async () => {
+
+        const url = new URL(ConfigService.themoviedb.urls.toprated);
+
+        const apiResponse = await fetch(url, getOptions)
+            .then(r => r.json())
+            .catch(err => console.error('error:' + err));
+
+        if(apiResponse.success === false){
+            return handleError(apiResponse);
+        }
+
+        return apiResponse.results;
+
+}
+
 const handleError = (response) => {
     console.error('error: ' + response.status_message)
     return { status: 500, error: "Internal Server Error" };
