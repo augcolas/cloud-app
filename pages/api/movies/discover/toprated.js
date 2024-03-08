@@ -2,7 +2,7 @@ import { getTopRatedMovies } from '/services/movies/movies.service';
 
 /**
  * @swagger
- *  /api/discover/toprated:
+ *  /api/movies/discover/toprated:
  *    get:
  *      description: Returns top rated movies
  *      responses:

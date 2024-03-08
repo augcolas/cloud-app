@@ -1,9 +1,9 @@
 import { getLikedMovies } from '/services/movies/likes.service';
-import { getRecommendations } from "../../../services/movies/movies.service";
+import { getRecommendations } from "../../../../services/movies/movies.service";
 
 /**
  * @swagger
- *  /api/discover/recommended:
+ *  /api/movies/discover/recommended:
  *    get:
  *      description: Returns recommended movies
  *      responses:
