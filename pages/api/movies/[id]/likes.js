@@ -1,4 +1,5 @@
 import clientPromise from "/lib/mongodb";
+import { ConfigService } from "/services/config/config.service";
 import { getLikes, updateLikes } from "/services/movies/likes.service";
 
 
@@ -37,7 +38,7 @@ export default async function handler(req, res) {
     const id = parseInt(req.query.id, 10);
 
     const client = await clientPromise;
-    const db = client.db("cloud-db");
+    const db = client.db(ConfigService.database.dbName);
 
     switch (req.method) {
 

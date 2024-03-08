@@ -1,10 +1,10 @@
 import clientPromise from '/lib/mongodb';
 import { ConfigService } from "/services/config/config.service";
-import { getMovie } from '/services/movies/movies.service';
+import { getSerie } from '/services/series/series.service';
 
 /**
  * @swagger
- *  /api/movies/{id}:
+ *  /api/series/{id}:
  *    get:
  *      parameters:
  *        - in: path
@@ -12,9 +12,9 @@ import { getMovie } from '/services/movies/movies.service';
  *          required: true
  *          schema:
  *              type: string
- *              default: 1096197
- *          description: movie id
- *      description: Returns a movie
+ *              default: 59941
+ *          description: serie id
+ *      description: Returns a serie
  *      responses:
  *          200:
  *              description: Success Response
@@ -29,18 +29,18 @@ export default async function handler(req, res) {
     switch (req.method) {
 
         case "GET":
-            const movie = await getMovie(id);
+            const serie = await getSerie(id);
 
             const likes = await db.collection("likes").findOne({idTMDB: id});
 
-            if(movie){
+            if(serie){
                 if (likes && likes.likeCounter) {
-                    movie.likes = likes.likeCounter;
+                    serie.likes = likes.likeCounter;
                 } else {
-                    movie.likes = 0;
+                    serie.likes = 0;
                 }
 
-                res.json({ status: 200, data: { movie: movie } });
+                res.json({ status: 200, data: { serie: serie } });
             }
             else {
                 res.status(404).json({ status: 404, error: "Not Found" });

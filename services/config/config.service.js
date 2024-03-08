@@ -22,5 +22,8 @@ export const ConfigService = {
             accept: 'application/json',
             authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZmRkOTdhOWNmMjI0ODc3MjMzNWY1NTJlMjU3MmFhOCIsInN1YiI6IjY1ZTliNzU3MzM5NmI5MDE2MjgzYWVjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pXiaYeGXWVkgOXYNujvs8LnDKnZuCURcPiAeyVZZnRU'
         }
+    },
+    database: {
+        dbName: 'cloud-db',
     }
 }

@@ -1,7 +1,10 @@
-import clientPromise from "../../lib/mongodb";
+import clientPromise from "/lib/mongodb";
+import { ConfigService } from "/services/config/config.service";
 
 const client = await clientPromise;
-const db = client.db("cloud-db");
+
+const db = client.db(ConfigService.database.dbName);
+
 export const getLikes = async (id) => {
     const likes = await db.collection("likes").findOne({idTMDB: id});
 
