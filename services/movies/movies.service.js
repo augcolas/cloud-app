@@ -1,4 +1,4 @@
-import {ConfigService} from "/services/config/config.service";
+import { ConfigService } from "/services/config/config.service";
 import fetch from 'node-fetch';
 
 const getOptions = {
@@ -7,10 +7,10 @@ const getOptions = {
 };
 
 export const getMovies = async (params= null) => {
-    let url = new URL(ConfigService.themoviedb.urls.discover);
+    let url = new URL(ConfigService.themoviedb.urls.movies.discover);
 
     if(params.query){
-        url = new URL(ConfigService.themoviedb.urls.search);
+        url = new URL(ConfigService.themoviedb.urls.movies.search);
         url.searchParams.append('query', params.query);
     }
 
@@ -32,7 +32,7 @@ export const getMovies = async (params= null) => {
 
 export const getMovie = async (id) => {
 
-    const url = new URL(ConfigService.themoviedb.urls.movie + '/' + id);
+    const url = new URL(ConfigService.themoviedb.urls.movies.movie + '/' + id);
 
     const apiResponse = await fetch(url, getOptions)
         .then(r => r.json())
@@ -47,7 +47,7 @@ export const getMovie = async (id) => {
 
 export const getVideos = async (id) => {
 
-        const url = new URL(ConfigService.themoviedb.urls.movie + '/' + id + '/videos');
+        const url = new URL(ConfigService.themoviedb.urls.movies.movie + '/' + id + '/videos');
 
         const apiResponse = await fetch(url, getOptions)
             .then(r => r.json())
@@ -62,7 +62,7 @@ export const getVideos = async (id) => {
 
 export const getRecommendations = async (id) => {
 
-        const url = new URL(ConfigService.themoviedb.urls.movie + '/' + id + '/recommendations');
+        const url = new URL(ConfigService.themoviedb.urls.movies.movie + '/' + id + '/recommendations');
 
         const apiResponse = await fetch(url, getOptions)
             .then(r => r.json())
@@ -78,7 +78,7 @@ export const getRecommendations = async (id) => {
 
 export const getTopRatedMovies = async () => {
 
-        const url = new URL(ConfigService.themoviedb.urls.toprated);
+        const url = new URL(ConfigService.themoviedb.urls.movies.toprated);
 
         const apiResponse = await fetch(url, getOptions)
             .then(r => r.json())
