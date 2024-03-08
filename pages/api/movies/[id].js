@@ -1,6 +1,5 @@
-import clientPromise from '/lib/mongodb';
-import { ConfigService } from "/services/config/config.service";
 import { getMovie } from '/services/movies/movies.service';
+import { getLikes } from "/services/likes.service";
 
 /**
  * @swagger
@@ -23,15 +22,12 @@ export default async function handler(req, res) {
 
     const id = parseInt(req.query.id, 10);
 
-    const client = await clientPromise;
-    const db = client.db(ConfigService.database.dbName);
-
     switch (req.method) {
 
         case "GET":
             const movie = await getMovie(id);
 
-            const likes = await db.collection("likes").findOne({idTMDB: id});
+            const likes = await getLikes(id, 'movie');
 
             if(movie){
                 if (likes && likes.likeCounter) {

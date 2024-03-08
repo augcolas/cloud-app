@@ -44,13 +44,18 @@ export default async function handler(req, res) {
 
         case "PATCH":
             const response = await updateLikes(id, 'serie');
-            res.status(response.status).json(response);
+            res.status(201).json(response);
             break;
 
         case "GET":
+            const likes = await getLikes(id, 'serie');
 
-            const responseGet = await getLikes(id, 'serie');
-            res.status(responseGet.status).json(responseGet);
+            if(likes){
+                res.status(200).json(likes);
+            }else{
+                res.status(404).json({ status: 404, error: "Not Found" });
+            }
+
             break;
 
         default:

@@ -20,11 +20,11 @@ export const getMovies = async (params= null) => {
 
     const apiResponse = await fetch(url, getOptions)
         .then(r => r.json())
-        .catch(err => console.error('error:' + err));
-
+        .catch(err => handleFetchError(err));
 
     if(apiResponse.success === false){
-        return handleError(apiResponse);
+        handleError(apiResponse);
+        return;
     }
 
     return apiResponse.results;
@@ -36,10 +36,11 @@ export const getMovie = async (id) => {
 
     const apiResponse = await fetch(url, getOptions)
         .then(r => r.json())
-        .catch(err => console.error('error:' + err));
+        .catch(err => handleFetchError(err));
 
     if(apiResponse.success === false){
-        return handleError(apiResponse);
+        handleError(apiResponse);
+        return;
     }
 
     return apiResponse;
@@ -51,10 +52,11 @@ export const getVideos = async (id) => {
 
         const apiResponse = await fetch(url, getOptions)
             .then(r => r.json())
-            .catch(err => console.error('error:' + err));
+            .catch(err => handleFetchError(err));
 
         if(apiResponse.success === false){
-            return handleError(apiResponse);
+            handleError(apiResponse);
+            return;
         }
 
         return apiResponse.results;
@@ -66,10 +68,11 @@ export const getRecommendations = async (id) => {
 
         const apiResponse = await fetch(url, getOptions)
             .then(r => r.json())
-            .catch(err => console.error('error:' + err));
+            .catch(err => handleFetchError(err));
 
         if(apiResponse.success === false){
-            return handleError(apiResponse);
+            handleError(apiResponse);
+            return;
         }
 
         return apiResponse.results;
@@ -82,10 +85,11 @@ export const getTopRatedMovies = async () => {
 
         const apiResponse = await fetch(url, getOptions)
             .then(r => r.json())
-            .catch(err => console.error('error:' + err));
+            .catch(err => handleFetchError(err));
 
         if(apiResponse.success === false){
-            return handleError(apiResponse);
+            handleError(apiResponse);
+            return;
         }
 
         return apiResponse.results;
@@ -94,5 +98,8 @@ export const getTopRatedMovies = async () => {
 
 const handleError = (response) => {
     console.error('error: ' + response.status_message)
-    throw new Error(response.status_message);
+}
+
+const handleFetchError = (err) => {
+    console.error('fetch error:' + err);
 }

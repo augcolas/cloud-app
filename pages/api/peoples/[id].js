@@ -1,9 +1,9 @@
-import { getSerie } from '/services/series/series.service';
+import { getPeople } from '/services/peoples/peoples.service';
 import { getLikes } from "/services/likes.service";
 
 /**
  * @swagger
- *  /api/series/{id}:
+ *  /api/peoples/{id}:
  *    get:
  *      parameters:
  *        - in: path
@@ -11,32 +11,31 @@ import { getLikes } from "/services/likes.service";
  *          required: true
  *          schema:
  *              type: string
- *              default: 59941
- *          description: serie id
- *      description: Returns a serie
+ *              default: 0
+ *          description: people id
+ *      description: Returns a people
  *      responses:
  *          200:
  *              description: Success Response
  */
 export default async function handler(req, res) {
-
     const id = parseInt(req.query.id, 10);
 
     switch (req.method) {
 
         case "GET":
-            const serie = await getSerie(id);
+            const people = await getPeople(id);
 
-            const likes = await getLikes(id, 'serie');
+            const likes = await getLikes(id, 'people');
 
-            if(serie){
+            if(people){
                 if (likes && likes.likeCounter) {
-                    serie.likes = likes.likeCounter;
+                    people.likes = likes.likeCounter;
                 } else {
-                    serie.likes = 0;
+                    people.likes = 0;
                 }
 
-                res.json({ status: 200, data: { serie: serie } });
+                res.json({ status: 200, data: { people: people } });
             }
             else {
                 res.status(404).json({ status: 404, error: "Not Found" });

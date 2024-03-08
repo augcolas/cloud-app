@@ -6,13 +6,10 @@ const client = await clientPromise;
 const db = client.db(ConfigService.database.dbName);
 
 export const getLikes = async (id,type) => {
-    const likes = await db.collection("likes").findOne(
-        {
-            idTMDB: id,
-            type: type
-        });
-
-    return { status: 200, data: { likes: likes } };
+    return  await db.collection("likes").findOne({
+        idTMDB: id,
+        type: type
+    });
 }
 
 export const updateLikes = async (id,type) => {
@@ -35,7 +32,7 @@ export const updateLikes = async (id,type) => {
             matchedCount: resMongo.matchedCount,
             modifiedCount: resMongo.modifiedCount
         }
-        return { status: 201, data: data };
+        return data;
     } else {
         resMongo = await db.collection("likes").insertOne(
             {
@@ -49,7 +46,7 @@ export const updateLikes = async (id,type) => {
             id: id,
             insertedId: resMongo.insertedId
         }
-        return { status: 201, data: data };
+        return data;
     }
 }
 

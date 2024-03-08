@@ -13,6 +13,9 @@ export const ConfigService = {
                 toprated:'https://api.themoviedb.org/3/tv/top_rated',
                 search: 'https://api.themoviedb.org/3/search/tv'
             },
+            peoples: {
+                person: 'https://api.themoviedb.org/3/person'
+            }
         },
         keys: {
             API_TOKEN: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZmRkOTdhOWNmMjI0ODc3MjMzNWY1NTJlMjU3MmFhOCIsInN1YiI6IjY1ZTliNzU3MzM5NmI5MDE2MjgzYWVjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pXiaYeGXWVkgOXYNujvs8LnDKnZuCURcPiAeyVZZnRU',
