@@ -6,6 +6,12 @@ import { getMovies } from "../../services/movies/movies.service";
  *      get:
  *          parameters:
  *            - in: query
+ *              name: query
+ *              required: false
+ *              schema:
+ *                  type: string
+ *              description: search query
+ *            - in: query
  *              name: page
  *              required: false
  *              schema:
@@ -20,13 +26,7 @@ import { getMovies } from "../../services/movies/movies.service";
 export default async function handler(req , res){
     const searchParams = req.query;
 
-    let page = 1;
-    if (searchParams.page) {
-        page = parseInt(searchParams.page, 10);
-    }
-
-    const movies = await getMovies(page);
-
+    const movies = await getMovies(searchParams);
 
     switch (req.method) {
         case 'GET':
