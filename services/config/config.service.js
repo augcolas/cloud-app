@@ -6,7 +6,13 @@ export const ConfigService = {
                 movie: 'https://api.themoviedb.org/3/movie',
                 toprated:'https://api.themoviedb.org/3/movie/top_rated',
                 search: 'https://api.themoviedb.org/3/search/movie'
-            }
+            },
+            tv: {
+                discover: 'https://api.themoviedb.org/3/discover/tv',
+                tv: 'https://api.themoviedb.org/3/tv',
+                toprated:'https://api.themoviedb.org/3/tv/top_rated',
+                search: 'https://api.themoviedb.org/3/search/tv'
+            },
         },
         keys: {
             API_TOKEN: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZmRkOTdhOWNmMjI0ODc3MjMzNWY1NTJlMjU3MmFhOCIsInN1YiI6IjY1ZTliNzU3MzM5NmI5MDE2MjgzYWVjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pXiaYeGXWVkgOXYNujvs8LnDKnZuCURcPiAeyVZZnRU',
