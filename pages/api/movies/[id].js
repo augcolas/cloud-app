@@ -31,11 +31,6 @@ export default async function handler(req, res) {
         case "GET":
             const movie = await getMovie(id);
 
-            if(movie.status !== 200){
-                res.status(movie.status).json({ status: movie.status, error: movie.error });
-                return;
-            }
-
             const likes = await db.collection("likes").findOne({idTMDB: id});
 
             if(movie){
@@ -45,7 +40,7 @@ export default async function handler(req, res) {
                     movie.likes = 0;
                 }
 
-                res.json({ status: 200, data: { movie: movie.data } });
+                res.json({ status: 200, data: { movie: movie } });
             }
             else {
                 res.status(404).json({ status: 404, error: "Not Found" });

@@ -7,9 +7,9 @@ export const ConfigService = {
                 toprated:'https://api.themoviedb.org/3/movie/top_rated',
                 search: 'https://api.themoviedb.org/3/search/movie'
             },
-            tv: {
+            series: {
                 discover: 'https://api.themoviedb.org/3/discover/tv',
-                tv: 'https://api.themoviedb.org/3/tv',
+                serie: 'https://api.themoviedb.org/3/tv',
                 toprated:'https://api.themoviedb.org/3/tv/top_rated',
                 search: 'https://api.themoviedb.org/3/search/tv'
             },

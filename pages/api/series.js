@@ -1,8 +1,8 @@
-import { getMovies } from "../../services/movies/movies.service";
+import { getSeries } from "/services/series/series.service";
 
 /**
  * @swagger
- *  /api/movies:
+ *  /api/series:
  *      get:
  *          parameters:
  *            - in: query
@@ -18,7 +18,7 @@ import { getMovies } from "../../services/movies/movies.service";
  *                  type: integer
  *                  default: 1
  *                  description: page number
- *          description: Returns a paginated list of movies
+ *          description: Returns a paginated list of series
  *          responses:
  *              200:
  *                  description: Success Response
@@ -26,11 +26,11 @@ import { getMovies } from "../../services/movies/movies.service";
 export default async function handler(req , res){
     const searchParams = req.query;
 
-    const movies = await getMovies(searchParams);
+    const series = await getSeries(searchParams);
 
     switch (req.method) {
         case 'GET':
-            res.json({ status: 200, data: movies});
+            res.json({ status: 200, data: series});
             break;
         default:
             res.status(405).end();

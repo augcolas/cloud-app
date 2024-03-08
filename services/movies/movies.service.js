@@ -27,7 +27,7 @@ export const getMovies = async (params= null) => {
         return handleError(apiResponse);
     }
 
-    return { status: 200, data: apiResponse.results };
+    return apiResponse.results;
 }
 
 export const getMovie = async (id) => {
@@ -42,7 +42,7 @@ export const getMovie = async (id) => {
         return handleError(apiResponse);
     }
 
-    return { status: 200, data: apiResponse };
+    return apiResponse;
 }
 
 export const getVideos = async (id) => {
@@ -57,7 +57,7 @@ export const getVideos = async (id) => {
             return handleError(apiResponse);
         }
 
-        return { status: 200, data: apiResponse.results };
+        return apiResponse.results;
 }
 
 export const getRecommendations = async (id) => {
@@ -92,9 +92,7 @@ export const getTopRatedMovies = async () => {
 
 }
 
-
-
 const handleError = (response) => {
     console.error('error: ' + response.status_message)
-    return { status: 500, error: "Internal Server Error" };
+    throw new Error(response.status_message);
 }
