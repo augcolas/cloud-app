@@ -10,6 +10,11 @@ export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true);
     const router = useRouter();
 
+    const availableRoutes = [
+        '/ui/sign-in',
+        '/ui/sign-up'
+    ];
+
     useEffect(() => {
         const user = getItem("user");
         if (user) {
@@ -19,7 +24,7 @@ export function AuthProvider({ children }) {
     }, []);
 
     useEffect(() => {
-        if (!user && !loading) {
+        if (!user && !loading && !availableRoutes.includes(router.pathname)){
             router.push('/ui/sign-in');
         }
     }, [user,loading]);
