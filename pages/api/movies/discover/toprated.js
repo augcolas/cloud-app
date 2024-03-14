@@ -1,4 +1,4 @@
-import { getTopRatedMovies } from '/services/movies/movies.service';
+import { getTopRatedMovies } from '/src/services/movies/movies.service';
 
 /**
  * @swagger

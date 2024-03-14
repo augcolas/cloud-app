@@ -1,4 +1,4 @@
-import { ConfigService } from "/services/config/config.service";
+import { ConfigService } from "/src/services/config/config.service";
 import fetch from 'node-fetch';
 
 const getOptions = {

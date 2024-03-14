@@ -9,18 +9,15 @@ import Copyright from '/src/theme/mui-base-theme/Copyright';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '/src/contexts/auth.context';
+import Button from "@mui/material/Button";
 
 export default function Index() {
 
-    const { user } = useAuth();
-    const router = useRouter();
+    const { logout } = useAuth();
 
-    useEffect(() => {
-        console.log('user', user);
-        if (!user) {
-            router.push('/ui/sign-in');
-        }
-    }, [user, router]);
+    const handleLogout = async() => {
+        await logout();
+    }
 
     return (
         <Container maxWidth="sm">
@@ -31,6 +28,13 @@ export default function Index() {
                 <Link href="/ui/about" color="secondary">
                     Go to the about page
                 </Link>
+
+                <Button
+                    onClick={handleLogout}
+                    variant="contained"
+                    color="primary"
+                >Log Out</Button>
+
                 <ProTip />
                 <Copyright />
             </Box>

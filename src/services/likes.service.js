@@ -1,5 +1,5 @@
 import clientPromise from "/lib/mongodb";
-import { ConfigService } from "/services/config/config.service";
+import { ConfigService } from "/src/services/config/config.service";
 
 const client = await clientPromise;
 

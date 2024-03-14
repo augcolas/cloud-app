@@ -1,6 +1,6 @@
 import clientPromise from "/lib/mongodb";
-import { ConfigService } from "/services/config/config.service";
-import { getLikes, updateLikes } from "/services/likes.service";
+import { ConfigService } from "/src/services/config/config.service";
+import { getLikes, updateLikes } from "/src/services/likes.service";
 
 
 /**

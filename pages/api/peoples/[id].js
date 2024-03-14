@@ -1,5 +1,5 @@
-import { getPeople } from '/services/peoples/peoples.service';
-import { getLikes } from "/services/likes.service";
+import { getPeople } from '/src/services/peoples/peoples.service';
+import { getLikes } from "/src/services/likes.service";
 
 /**
  * @swagger

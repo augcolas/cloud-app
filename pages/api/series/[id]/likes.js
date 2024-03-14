@@ -1,4 +1,4 @@
-import { getLikes, updateLikes } from "/services/likes.service";
+import { getLikes, updateLikes } from "/src/services/likes.service";
 
 /**
  * @swagger

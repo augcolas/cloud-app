@@ -1,4 +1,4 @@
-import { getTopRatedSeries } from '/services/series/series.service';
+import { getTopRatedSeries } from '/src/services/series/series.service';
 
 /**
  * @swagger
