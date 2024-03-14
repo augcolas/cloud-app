@@ -1,4 +1,4 @@
-import {createContext, useContext, useEffect, useState} from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { getItem, setItem, removeItem } from "/src/services/localstorage.service";
 import { useRouter } from "next/router";
 
@@ -110,7 +110,7 @@ export function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={{ user: token, loading, login, logout, register }}>
+        <AuthContext.Provider value={{ token, loading, login, logout, register }}>
             {children}
         </AuthContext.Provider>
     );
