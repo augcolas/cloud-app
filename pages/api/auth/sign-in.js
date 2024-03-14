@@ -8,7 +8,13 @@ const db = client.db(ConfigService.database.dbName);
 export default async function handler(req, res) {
 
     const { email, password } = req.body
-    console.log(email, password);
+
+    const user = await db.collection('users').findOne({ email: email, password: password });
+
+    if(!user){
+        res.status(401).json({message: 'Invalid credentials'});
+        return;
+    }
 
     const jwt_token = jwt.sign({
         data: {

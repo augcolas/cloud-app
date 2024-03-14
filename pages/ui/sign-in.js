@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,6 +15,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useRouter } from "next/router";
 import { useAuth } from '/src/contexts/auth.context';
+import {Snackbar} from "@mui/material";
+import {error} from "next/dist/build/output/log";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -22,19 +25,36 @@ export default function SignIn() {
     const { login } = useAuth();
     const router = useRouter();
 
+    const [error, setError] = useState({open: false, message: ''});
+
+    const handleClose = (event, reason = null) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setError({open: false, message: ''});
+    }
+
     const handleSubmit = async (event) => {
 
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
 
         try {
-            await login({
-                email: formData.get('email'),
-                password: formData.get('password')
-            });
+            try {
+                setError({open: false, message: ''})
+                await login({
+                    email: formData.get('email'),
+                    password: formData.get('password')
+                });
+            }catch (error){
+                console.error(error);
+                setError({open: true, message: error.message});
+                return;
+            }
+
             await router.push('/');
         } catch (error) {
-            console.error('Error signing in:', error);
+            console.error(error);
         }
     };
 
@@ -101,6 +121,12 @@ export default function SignIn() {
                                 </Link>
                             </Grid>
                         </Grid>
+                        <Snackbar
+                            open={error.open}
+                            autoHideDuration={6000}
+                            onClose={handleClose}
+                            message={error.message}
+                        />
                     </Box>
                 </Box>
             </Container>

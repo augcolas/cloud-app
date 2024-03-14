@@ -6,28 +6,54 @@ import { useRouter } from "next/router";
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-    const [user, setUser] = useState(null);
+    const [token, setToken] = useState(null);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
 
-    const availableRoutes = [
+    const authorizedPages = [
         '/ui/sign-in',
         '/ui/sign-up'
     ];
 
     useEffect(() => {
-        const user = getItem("user");
-        if (user) {
-            setUser(user);
+        const token = getItem("token");
+        if (token) {
+            setToken(token);
         }
         setLoading(false);
     }, []);
 
     useEffect(() => {
-        if (!user && !loading && !availableRoutes.includes(router.pathname)){
-            router.push('/ui/sign-in');
+        checkTokenValidity().then((validToken) => {
+            if (!validToken && !loading && !authorizedPages.includes(router.pathname)){
+                router.push('/ui/sign-in');
+            }
+        });
+    }, [token,loading]);
+
+    const checkTokenValidity = async () => {
+        if (token) {
+            const response = await fetch('/api/auth/verify', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    token: token
+                }),
+            });
+
+            const data = await response.json();
+            if(response.ok){
+                return true;
+            }else{
+                setToken(null);
+                removeItem("token");
+                return false;
+            }
         }
-    }, [user,loading]);
+        return false;
+    }
 
     const login = async (infos) => {
 
@@ -42,17 +68,20 @@ export function AuthProvider({ children }) {
             }),
         });
 
+        const data = await response.json();
+
         if(response.ok){
-            const data = await response.json();
-            setUser(data);
-            setItem("user", data);
+            setToken(data.token);
+            setItem("token", data.token);
+        }else{
+            throw new Error(data.message);
         }
 
     };
 
     const logout = () => {
-        setUser(null);
-        removeItem("user");
+        setToken(null);
+        removeItem("token");
     };
 
     const register = async (infos) => {
@@ -69,16 +98,19 @@ export function AuthProvider({ children }) {
             }),
         });
 
+        const data = await response.json();
+
         if(response.ok){
-            const data = await response.json();
-            setUser(data);
-            setItem("user", data);
+            setToken(data.token);
+            setItem("token", data.token);
+        }else {
+            throw new Error(data.message);
         }
 
     }
 
     return (
-        <AuthContext.Provider value={{ user, loading, login, logout, register }}>
+        <AuthContext.Provider value={{ user: token, loading, login, logout, register }}>
             {children}
         </AuthContext.Provider>
     );

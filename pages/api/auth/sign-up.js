@@ -9,6 +9,21 @@ export default async function handler(req, res) {
 
     const { email, password, firstName, lastName } = req.body
 
+    if(!email || !password || !firstName || !lastName){
+        res.status(400).json({message: 'Missing input'});
+        return;
+    }
+
+    if(!email.includes('@')){
+        res.status(400).json({message: 'Invalid email'});
+        return;
+    }
+
+    if(password.length < 6){
+        res.status(400).json({message: 'Password too short'});
+        return;
+    }
+
     const jwt_token = jwt.sign({
         data: {
             email: email
@@ -37,7 +52,8 @@ const saveUserToDatabase = async (userData) => {
     const user = await db.collection("users").findOne({ email: userData.email });
     if (user) {
         throw new Error("User already exists");
-    }else{
+    }
+    else{
         // Save user in database
         await db.collection("users").insertOne(userData);
     }

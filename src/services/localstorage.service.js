@@ -1,6 +1,14 @@
 
 export const getItem = (key) => {
-    return localStorage.getItem(key);
+    const value = localStorage.getItem(key);
+    if(value && value[0] === "{"){
+       try {
+              return JSON.parse(value);
+       }catch (e){
+              return value;
+       }
+    }
+    return value;
 }
 
 export const setItem = (key, value) => {
