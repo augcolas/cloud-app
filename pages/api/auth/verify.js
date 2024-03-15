@@ -13,6 +13,16 @@ export default async function handler(req, res) {
             res.status(401).json({message: err.message});
             return;
         }
+
+        if(decoded.exp){
+            const date = new Date(0);
+            date.setUTCSeconds(decoded.exp);
+            if(date < new Date()){
+                res.status(401).json({message: 'Token expired'});
+                return;
+            }
+        }
+
         res.status(200).json({message: 'Token is valid'});
     });
 }

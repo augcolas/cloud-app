@@ -44,9 +44,11 @@ export function AuthProvider({ children }) {
             });
 
             const data = await response.json();
+
             if(response.ok){
                 return true;
             }else{
+                console.log(data.message)
                 setToken(null);
                 removeItem("token");
                 return false;
@@ -106,7 +108,6 @@ export function AuthProvider({ children }) {
         }else {
             throw new Error(data.message);
         }
-
     }
 
     return (
