@@ -7,6 +7,7 @@ const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
     const [token, setToken] = useState(null);
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
 
@@ -46,6 +47,7 @@ export function AuthProvider({ children }) {
             const data = await response.json();
 
             if(response.ok){
+                setUser(data.user);
                 return true;
             }else{
                 console.log(data.message)
@@ -111,7 +113,7 @@ export function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={{ token, loading, login, logout, register }}>
+        <AuthContext.Provider value={{ user, token, loading, login, logout, register }}>
             {children}
         </AuthContext.Provider>
     );
