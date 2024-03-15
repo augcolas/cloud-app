@@ -1,5 +1,5 @@
-import { getLiked } from '/src/services/likes.service';
-import { getRecommendations } from "/src/services/series/series.service";
+import { getLiked } from '../../../../src/services/likes.service';
+import { getRecommendations } from "../../../../src/services/series/series.service";
 
 /**
  * @swagger

@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
-import clientPromise from "/lib/mongodb";
-import {ConfigService} from "/src/services/config/config.service";
+import clientPromise from "../../../lib/mongodb";
+import {ConfigService} from "../../../src/services/config/config.service";
 
 const client = await clientPromise;
 const db = client.db(ConfigService.database.dbName);

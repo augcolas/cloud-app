@@ -1,4 +1,4 @@
-import { getVideos } from "/src/services/movies/movies.service";
+import { getVideos } from "../../../../src/services/movies/movies.service";
 
 /**
  * @swagger

@@ -1,4 +1,4 @@
-import { getSeries } from "/src/services/series/series.service";
+import { getSeries } from "../../src/services/series/series.service";
 
 /**
  * @swagger

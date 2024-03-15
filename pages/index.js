@@ -2,13 +2,11 @@ import * as React from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import ProTip from '/src/theme/mui-base-theme/ProTip';
-import Link from '/src/theme/mui-base-theme/Link';
-import Copyright from '/src/theme/mui-base-theme/Copyright';
+import ProTip from '../src/theme/mui-base-theme/ProTip';
+import Link from '../src/theme/mui-base-theme/Link';
+import Copyright from '../src/theme/mui-base-theme/Copyright';
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { useAuth } from '/src/contexts/auth.context';
+import { useAuth } from '../src/contexts/auth.context';
 import Button from "@mui/material/Button";
 
 export default function Index() {
