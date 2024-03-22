@@ -29,7 +29,18 @@ const theme = createTheme({
     },
     typography: {
         fontFamily: roboto.style.fontFamily,
-    }
+    },
+    components: {
+        MuiContainer: {
+            styleOverrides: {
+                root: {
+                    maxWidth: '100%',
+                    marginLeft: '0',
+                    marginRight: '0',
+                },
+            },
+        },
+    },
 });
 
 export default theme;

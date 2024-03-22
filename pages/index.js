@@ -66,7 +66,9 @@ export default function Index() {
                             {movies.map((movie,index) => (
                                 <Grid item key={movie.id} xs={12} sm={6} md={4}>
                                     <Card>
-                                        <CardActionArea>
+                                        <CardActionArea
+                                            onClick={() => window.location.href = `ui/movies/${movie.id}`}
+                                        >
                                             <Box className={styles.cardImage}
                                                 sx={{backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.poster_path})`,}}
                                             >
