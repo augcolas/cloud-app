@@ -27,6 +27,7 @@
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-hover": "^3.0.1",
     "swagger-ui-react": "^3.52.3"
   },
   "devDependencies": {
