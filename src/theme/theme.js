@@ -11,19 +11,25 @@ const roboto = Roboto({
 // Create a theme instance.
 const theme = createTheme({
     palette: {
-        primary: {
-            main: '#556cd6',
+        highlight: {
+            main: '#F5DD90',
         },
-        secondary: {
-            main: '#19857b',
+        warning: {
+            main: '#F68E5F'
         },
         error: {
-            main: red.A400,
+            main: '#F76C5E',
         },
+        common: {
+            dark: '#333333',
+            grey: '#4F4F4F',
+            light_grey: '#828282',
+            light: '#F5F5F5',
+        }
     },
     typography: {
         fontFamily: roboto.style.fontFamily,
-    },
+    }
 });
 
 export default theme;

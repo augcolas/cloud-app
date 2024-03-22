@@ -20,7 +20,7 @@ jest.mock("../../lib/mongodb", () => ({
 }));
 
 describe("/api/likes API", () => {
-    xit("should get like counter for a movie", async () => {
+    it("should get like counter for a movie", async () => {
         const { req, res } = createMocks({
             method: "GET",
             query: { idMovie: 123 },

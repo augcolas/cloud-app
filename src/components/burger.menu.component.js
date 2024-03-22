@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItem, ListItemText, Divider } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useTheme } from '@mui/material/styles';
 
 
 const BurgerMenu = (props) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const theme = useTheme();
     const { user, logout } = props;
-
     const toggleDrawer = (open) => (event) => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
@@ -34,16 +35,16 @@ const BurgerMenu = (props) => {
 
     return (
         <div>
-            <AppBar position="static">
+            <AppBar style={{backgroundColor:theme.palette.common.dark}}>
                 <Toolbar>
-                    <Typography variant="h6" sx={{ flexGrow: 1 }}>
+                    <Typography variant="h6" sx={{ flexGrow: 1}} color={"white"}>
                         CloudMovies
                     </Typography>
                     <IconButton
                         edge="end"
-                        color="inherit"
                         aria-label="menu"
                         onClick={toggleDrawer(true)}
+                        style={{color: theme.palette.common.light}}
                     >
                         <MenuIcon />
                     </IconButton>
