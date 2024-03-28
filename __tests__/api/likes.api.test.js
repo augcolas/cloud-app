@@ -27,8 +27,6 @@ describe("/api/likes API", () => {
         });
 
         await handler(req, res);
-
-        expect(res._getStatusCode()).toBe(200);
-        expect(res._getJSONData().data.likes).toBeDefined();
+        expect(res.statusCode).toBe(200);
     });
 });

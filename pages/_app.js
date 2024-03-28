@@ -6,6 +6,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from '/src/theme/theme';
 import {AuthProvider} from '/src/contexts/auth.context';
+import {Container} from "@mui/material";
 export default function MyApp(props) {
     const { Component, pageProps } = props;
     return (
@@ -16,8 +17,9 @@ export default function MyApp(props) {
                     </Head>
                     <ThemeProvider theme={theme}>
                         <CssBaseline />
-
-                        <Component {...pageProps} />
+                        <Container disableGutters style={{backgroundColor: theme.palette.common.dark, minHeight:'100vh'}}>
+                            <Component {...pageProps}/>
+                        </Container>
                     </ThemeProvider>
                 </AppCacheProvider>
         </AuthProvider>

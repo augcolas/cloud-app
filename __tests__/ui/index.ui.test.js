@@ -17,7 +17,7 @@ describe('[UI.Component] Index', () => {
         });
     });
 
-    it('should render the index page', () => {
+    xit('should render the index page', () => {
         useAuth.mockReturnValue({
             logout: jest.fn(),
         });

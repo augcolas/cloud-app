@@ -1,26 +1,19 @@
-import * as React from 'react';
-import {
-    Typography,
-    Container,
-    Grid,
-    Card,
-    CardActionArea,
-    Box,
-    InputBase,
-    IconButton
-} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from '../src/contexts/auth.context';
-import BurgerMenu from '../src/components/burger.menu.component';
 import { useTheme } from '@mui/material/styles';
+import BurgerMenu from '../src/components/burger.menu.component';
+import { Typography, Container, Grid, Card, CardActionArea, Box, InputBase, IconButton } from '@mui/material';
 import styles from '../src/styles/index.module.css';
+import { getPosterPath } from "../src/services/ui/utils.service";
+
+
 export default function Index() {
 
     const theme = useTheme();
     const { user, logout } = useAuth();
 
-    const [movies, setMovies] = React.useState([]);
+    const [movies, setMovies] = useState([]);
 
     const optionsCursorTrueWithMargin = {
         followCursor: true,
@@ -70,7 +63,7 @@ export default function Index() {
                                             onClick={() => window.location.href = `ui/movies/${movie.id}`}
                                         >
                                             <Box className={styles.cardImage}
-                                                sx={{backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.poster_path})`,}}
+                                                sx={{backgroundImage: getPosterPath(movie.poster_path)}}
                                             >
                                                 <Typography gutterBottom variant="h5" component="div" className={styles.cardTitle}>
                                                     <span className={styles.hoverText}>{movie.title}</span>

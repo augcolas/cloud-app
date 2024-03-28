@@ -34,7 +34,7 @@ const BurgerMenu = (props) => {
     );
 
     return (
-        <div>
+        <div style={{height:64}}>
             <AppBar style={{backgroundColor:theme.palette.common.dark}}>
                 <Toolbar>
                     <Typography variant="h6" sx={{ flexGrow: 1}} color={"white"}>

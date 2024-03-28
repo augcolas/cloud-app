@@ -35,26 +35,24 @@ export default async function handler(req, res) {
 
     const id = parseInt(req.query.id, 10);
 
-    switch (req.method) {
+    if(req.method === "PATCH"){
+        const response = await updateLikes(id, 'movie')
+        console.log(response)
+        res.status(201).json(response);
 
-        case "PATCH":
-            updateLikes(id, 'movie').then((response) => {
-                res.status(201).json(response);
-            });
-            break;
+    }
+    else if(req.method === "GET"){
+        getLikes(id, 'movie').then((likes) => {
+            if (likes) {
+                res.status(200).json({ likes: likes });
+            }
+            else {
+                res.status(404).json({ status: 404, error: "Not Found" });
+            }
+        });
 
-        case "GET":
-            getLikes(id, 'movie').then((likes) => {
-                if (likes) {
-                    res.status(200).json({ likes: likes });
-                }
-                else {
-                    res.status(404).json({ status: 404, error: "Not Found" });
-                }
-            });
-            break;
-
-        default:
-            res.status(405).json({ status: 405, error: "Method Not Allowed" });
+    }
+    else{
+        res.status(405).json({ status: 405, error: "Method Not Allowed" });
     }
 }

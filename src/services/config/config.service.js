@@ -20,6 +20,11 @@ export const ConfigService = {
         headers: {
             accept: 'application/json',
             authorization: 'Bearer ' + process.env.API_TOKEN
+        },
+        utils: {
+            image: {
+                poster_path: 'https://image.tmdb.org/t/p/original'
+            }
         }
     },
     database: {

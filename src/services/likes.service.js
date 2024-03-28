@@ -1,9 +1,16 @@
 import clientPromise from "../../lib/mongodb";
 import { ConfigService } from "./config/config.service";
 
-const client = await clientPromise;
+let client;
+let db;
 
-const db = client.db(ConfigService.database.dbName);
+const connectToDatabase = async () => {
+    client = await clientPromise;
+    db = client.db(ConfigService.database.dbName);
+};
+
+// Ensure connection to the database when the module is imported
+connectToDatabase();
 
 export const getLikes = async (id,type) => {
     return  await db.collection("likes").findOne({
