@@ -6,6 +6,7 @@
     "start": "next start",
     "test": "clear && jest",
     "test:watch": "jest --watch",
+    "test:ci": "jest --ci",
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
