@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import BurgerMenu from "../../../src/components/burger.menu.component";
 import * as React from "react";
 import {useAuth} from "../../../src/contexts/auth.context";
-import {Box, Container, Paper} from "@mui/material";
+import {Box, Container, Paper, Typography} from "@mui/material";
 import {useTheme} from "@mui/material/styles";
 import {getPosterPath} from "../../../src/services/ui/utils.service";
 import styles from "../../../src/styles/movie.module.css";
@@ -36,11 +36,18 @@ export default function Movie() {
             <>
                 <BurgerMenu user={user} logout={logout}/>
                 <Container disableGutters className={styles.root}>
-                    <Container>
+                    <Container disableGutters>
                         <Box className={styles.image} sx={{backgroundImage: getPosterPath(movie.poster_path)}}/>
                     </Container>
-                    <Container className={styles.info} sx={{color:theme.palette.common.light}}>
-                        <h1>{movie.title}</h1>
+                    <Container disableGutters className={styles.info} sx={{color:theme.palette.common.light}}>
+                        <Typography variant={"h5"}>{movie.title} ({movie.release_date.split('-')[0]})</Typography>
+                        <Typography>{movie.status === 'Released' ? 'Released': 'Unreleased'}</Typography>
+                        <Typography sx={{color:theme.palette.common.light_grey}}>{movie.genres.map(genre => {
+                            return (
+                                <span key={genre.id}>{genre.name}, </span>
+                            )
+                        })}</Typography>
+                        <Typography className={styles.overview}>{movie.overview}</Typography>
                     </Container>
                 </Container>
             </>
