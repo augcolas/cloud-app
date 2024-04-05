@@ -5,17 +5,17 @@ import theme from '/src/theme/theme';
 
 export default function MyDocument(props) {
     return (
-        <Html lang="en">
+        <Html lang="fr">
             <Head>
                 {/* PWA primary color */}
-                <meta name="theme-color" content={theme.palette.primary.main} />
+                <meta name="theme-color" />
                 <link rel="shortcut icon" href="/favicon.ico" />
                 <meta name="emotion-insertion-point" content="" />
                 <DocumentHeadTags {...props} />
             </Head>
             <body>
-            <Main />
-            <NextScript />
+                <Main />
+                <NextScript />
             </body>
         </Html>
     );

@@ -32,50 +32,50 @@ export default function Index() {
 
     return (
         <div>
-                <BurgerMenu user={user} logout={logout}/>
-                <Container disableGutters className={styles.root}
-                    style={{backgroundColor: theme.palette.common.dark}}
-                >
-                    <Box className={styles.title}>
-                        <Typography variant={"h6"} color={theme.palette.common.light}>
-                            What would you like to discover ?
-                        </Typography>
-                        <Box className={styles.searchBar}
-                             style={{backgroundColor: theme.palette.common.light_grey}}
-                        >
-                            <IconButton type="button" aria-label="search" style={{
-                                color: theme.palette.common.light
-                            }}>
-                                <SearchIcon />
-                            </IconButton>
-                            <InputBase
-                                placeholder={"Search"}
-                                inputProps={{ style: { color: theme.palette.common.light } }}
-                            />
-                        </Box>
+            <BurgerMenu user={user} logout={logout}/>
+            <Container disableGutters className={styles.root}
+                style={{backgroundColor: theme.palette.common.dark}}
+            >
+                <Box className={styles.title}>
+                    <Typography variant={"h6"} color={theme.palette.common.light}>
+                        What would you like to discover ?
+                    </Typography>
+                    <Box className={styles.searchBar}
+                         style={{backgroundColor: theme.palette.common.light_grey}}
+                    >
+                        <IconButton type="button" aria-label="search" style={{
+                            color: theme.palette.common.light
+                        }}>
+                            <SearchIcon />
+                        </IconButton>
+                        <InputBase
+                            placeholder={"Search"}
+                            inputProps={{ style: { color: theme.palette.common.light } }}
+                        />
                     </Box>
-                    <Container>
-                        <Grid container spacing={4}>
-                            {movies.map((movie,index) => (
-                                <Grid item key={movie.id} xs={12} sm={6} md={4}>
-                                    <Card>
-                                        <CardActionArea
-                                            onClick={() => window.location.href = `ui/movies/${movie.id}`}
+                </Box>
+                <Container>
+                    <Grid container spacing={4}>
+                        {movies.map((movie,index) => (
+                            <Grid item key={movie.id} xs={12} sm={6} md={4}>
+                                <Card>
+                                    <CardActionArea
+                                        onClick={() => window.location.href = `ui/movies/${movie.id}`}
+                                    >
+                                        <Box className={styles.cardImage}
+                                            sx={{backgroundImage: getPosterPath(movie.poster_path)}}
                                         >
-                                            <Box className={styles.cardImage}
-                                                sx={{backgroundImage: getPosterPath(movie.poster_path)}}
-                                            >
-                                                <Typography gutterBottom variant="h5" component="div" className={styles.cardTitle}>
-                                                    <span className={styles.hoverText}>{movie.title}</span>
-                                                </Typography>
-                                            </Box>
-                                        </CardActionArea>
-                                    </Card>
-                                </Grid>
-                            ))}
-                        </Grid>
-                    </Container>
+                                            <Typography gutterBottom variant="h5" component="div" className={styles.cardTitle}>
+                                                <span className={styles.hoverText}>{movie.title}</span>
+                                            </Typography>
+                                        </Box>
+                                    </CardActionArea>
+                                </Card>
+                            </Grid>
+                        ))}
+                    </Grid>
                 </Container>
+            </Container>
         </div>
     );
 }

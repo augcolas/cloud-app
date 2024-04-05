@@ -8,23 +8,32 @@ const roboto = Roboto({
     display: 'swap',
 });
 
+const highlight = '#F5DD90';
+const warning = '#F68E5F';
+const error = '#F76C5E';
+const dark = '#333333';
+const grey = '#4F4F4F';
+const light_grey = '#828282';
+const light = '#F5F5F5';
+
+
 // Create a theme instance.
 const theme = createTheme({
     palette: {
         highlight: {
-            main: '#F5DD90',
+            main: highlight,
         },
         warning: {
-            main: '#F68E5F'
+            main: warning
         },
         error: {
-            main: '#F76C5E',
+            main: error,
         },
         common: {
-            dark: '#333333',
-            grey: '#4F4F4F',
-            light_grey: '#828282',
-            light: '#F5F5F5',
+            dark: dark,
+            grey: grey,
+            light_grey: light_grey,
+            light: light,
         }
     },
     typography: {
@@ -34,9 +43,17 @@ const theme = createTheme({
         MuiContainer: {
             styleOverrides: {
                 root: {
+                    backgroundColor: dark,
                     maxWidth: '100%',
                     marginLeft: '0',
                     marginRight: '0',
+                },
+            },
+        },
+        MuiTextField: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: dark,
                 },
             },
         },
