@@ -26,12 +26,11 @@ import { getMovies } from "../../src/services/movies/movies.service";
 export default async function handler(req , res){
     const searchParams = req.query;
 
-    console.log('req', req);
-    const movies = await getMovies(searchParams);
+    const apiResponse = await getMovies(searchParams);
 
     switch (req.method) {
         case 'GET':
-            res.status(200).json({ status: 200, data: movies});
+            res.status(200).json({ status: 200, data: apiResponse});
             break;
         default:
             res.status(405).end();

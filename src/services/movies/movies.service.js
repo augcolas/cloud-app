@@ -27,7 +27,7 @@ export const getMovies = async (params= null) => {
         return;
     }
 
-    return apiResponse.results;
+    return apiResponse;
 }
 
 export const getMovie = async (id) => {

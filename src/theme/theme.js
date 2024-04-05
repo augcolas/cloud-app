@@ -57,6 +57,13 @@ const theme = createTheme({
                 },
             },
         },
+        MuiPaginationItem: {
+            styleOverrides: {
+                root: {
+                    color: light,
+                },
+            },
+        },
     },
 });
 
