@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from '../src/contexts/auth.context';
 import { useTheme } from '@mui/material/styles';
 import BurgerMenu from '../src/components/burger.menu.component';
-import { Typography, Container, Grid, Card, CardActionArea, Box, InputBase, IconButton } from '@mui/material';
+import {Typography, Container, Grid, Card, CardActionArea, Box, InputBase, IconButton, debounce} from '@mui/material';
 import styles from '../src/styles/index.module.css';
 import { getPosterPath } from "../src/services/ui/utils.service";
 
@@ -14,6 +14,7 @@ export default function Index() {
     const { user, logout } = useAuth();
 
     const [movies, setMovies] = useState([]);
+    const [query, setQuery] = useState('');
 
     const optionsCursorTrueWithMargin = {
         followCursor: true,
@@ -22,13 +23,21 @@ export default function Index() {
     };
 
     useEffect(() => {
-        fetch('/api/movies')
+        let url = '/api/movies';
+        if(query!==''){
+            url += '?query='+query;
+        }
+        console.log('fetching movies', url);
+        fetch(url)
             .then(response => response.json())
             .then(json => {
                 setMovies(json.data)
                 console.log(json.data)
             });
-    }, []);
+    }, [query]);
+
+
+    const debouncedOnChange = debounce(setQuery, 500);
 
     return (
         <div>
@@ -51,6 +60,7 @@ export default function Index() {
                         <InputBase
                             placeholder={"Search"}
                             inputProps={{ style: { color: theme.palette.common.light } }}
+                            onChange={(e) => debouncedOnChange(e.target.value)}
                         />
                     </Box>
                 </Box>

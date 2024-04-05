@@ -26,6 +26,7 @@ import { getMovies } from "../../src/services/movies/movies.service";
 export default async function handler(req , res){
     const searchParams = req.query;
 
+    console.log('req', req);
     const movies = await getMovies(searchParams);
 
     switch (req.method) {
