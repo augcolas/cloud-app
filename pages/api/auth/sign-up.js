@@ -35,7 +35,8 @@ export default async function handler(req, res) {
         firstName: firstName,
         lastName: lastName,
         password: password,
-        token: jwt_token
+        token: jwt_token,
+        likes: []
     }).catch((error) => {
         res.status(500).json({
             message: error.message

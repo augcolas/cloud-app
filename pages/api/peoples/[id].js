@@ -1,5 +1,5 @@
 import { getPeople } from '../../../src/services/peoples/peoples.service';
-import { getLikes } from "../../../src/services/likes.service";
+import { getLikesById } from "../../../src/services/likes.service";
 
 /**
  * @swagger
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
         case "GET":
             const people = await getPeople(id);
 
-            const likes = await getLikes(id, 'people');
+            const likes = await getLikesById(id, 'people');
 
             if(people){
                 if (likes && likes.likeCounter) {

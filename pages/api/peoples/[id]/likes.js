@@ -1,4 +1,4 @@
-import { getLikes, updateLikes } from "../../../../src/services/likes.service";
+import { getLikesById, updateLikes } from "../../../../src/services/likes.service";
 
 
 /**
@@ -43,7 +43,7 @@ export default async function handler(req, res) {
             break;
 
         case "GET":
-            const likes = await getLikes(id, 'people');
+            const likes = await getLikesById(id, 'people');
 
             if(likes){
                 res.status(200).json(likes);

@@ -1,10 +1,14 @@
-import { getLikes, updateLikes } from "../../../../src/services/likes.service";
+import { getLikesById, updateLikes } from "../../../../src/services/likes.service";
 
 
 /**
  * @swagger
  *  /api/movies/{id}/likes:
  *      patch:
+ *          headers:
+ *              x-access-token:
+ *                  schema:
+ *                      type: string
  *          parameters:
  *            - in: path
  *              name: id
@@ -36,13 +40,14 @@ export default async function handler(req, res) {
     const id = parseInt(req.query.id, 10);
 
     if(req.method === "PATCH"){
-        const response = await updateLikes(id, 'movie')
+        const xAccessToken = req.headers['x-access-token'];
+        const response = await updateLikes(id, 'movie', xAccessToken)
         console.log(response)
         res.status(201).json(response);
 
     }
     else if(req.method === "GET"){
-        getLikes(id, 'movie').then((likes) => {
+        getLikesById(id, 'movie').then((likes) => {
             if (likes) {
                 res.status(200).json({ likes: likes });
             }

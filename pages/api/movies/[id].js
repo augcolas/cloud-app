@@ -1,5 +1,5 @@
 import { getMovie } from '../../../src/services/movies/movies.service';
-import { getLikes } from "../../../src/services/likes.service";
+import { getLikesById } from "../../../src/services/likes.service";
 
 /**
  * @swagger
@@ -27,7 +27,7 @@ export default async function handler(req, res) {
         case "GET":
             const movie = await getMovie(id);
 
-            const likes = await getLikes(id, 'movie');
+            const likes = await getLikesById(id, 'movie');
 
             if(movie){
                 if (likes && likes.likeCounter) {

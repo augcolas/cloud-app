@@ -18,6 +18,8 @@ export const getMovies = async (params= null) => {
         url.searchParams.append('page', params.page);
     }
 
+    //url.searchParams.append('include_adult', true);
+
     const apiResponse = await fetch(url, getOptions)
         .then(r => r.json())
         .catch(err => handleFetchError(err));
