@@ -26,6 +26,11 @@ jobs:
       - store_test_results:
           path: ./test-results/
 
+  e2e_tests:
+    executor: node/default
+    steps:
+      - checkout
+      - run: echo "Running E2E tests..."
 
   deploy_prod:
     docker:
@@ -56,6 +61,9 @@ workflows:
     jobs:
       - build
       - unit_tests:
+          requires:
+            - build
+      - e2e_tests:
           requires:
             - build
       - deploy_prod:
