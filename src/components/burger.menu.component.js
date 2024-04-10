@@ -37,7 +37,12 @@ const BurgerMenu = (props) => {
         <div style={{height:64}}>
             <AppBar style={{backgroundColor:theme.palette.common.dark}}>
                 <Toolbar>
-                    <Typography variant="h6" sx={{ flexGrow: 1}} color={"white"}>
+                    <Typography
+                        variant="h6"
+                        sx={{ flexGrow: 1}}
+                        color={"white"}
+                        onClick={()=>window.location.href="/"}
+                    >
                         CloudMovies
                     </Typography>
                     <IconButton
