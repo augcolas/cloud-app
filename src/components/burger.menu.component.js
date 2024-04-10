@@ -15,6 +15,10 @@ const BurgerMenu = (props) => {
         setIsDrawerOpen(open);
     };
 
+    const likes = () => {
+        window.location.href = "/ui/likes";
+    }
+
     const list = () => (
         <div
             role="presentation"
@@ -25,6 +29,9 @@ const BurgerMenu = (props) => {
                Welcome {user ? user.firstName : "firstName" } !
             </Typography>
             <List>
+                <ListItem button onClick={likes}>
+                    <ListItemText primary="Likes" />
+                </ListItem>
                 <ListItem button onClick={logout}>
                     <ListItemText primary="Log out" />
                 </ListItem>
