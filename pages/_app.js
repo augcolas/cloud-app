@@ -17,8 +17,15 @@ export default function MyApp(props) {
                     </Head>
                     <ThemeProvider theme={theme}>
                         <CssBaseline />
-                        <Container disableGutters style={{minHeight:'100vh'}}>
-                            <Component {...pageProps}/>
+                        <Container disableGutters style={{
+                            display:'flex', justifyContent:'center',
+                            minHeight:'100vh', maxWidth:'100vw'
+                        }}>
+                            <Container disableGutters style={{
+                                minHeight:'100vh', width:'100vw'
+                            }}>
+                                <Component {...pageProps}/>
+                            </Container>
                         </Container>
                     </ThemeProvider>
                 </AppCacheProvider>
