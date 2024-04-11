@@ -54,12 +54,25 @@ To get started with this project, follow these steps:
 - **Movies List**: Display a list of movies with their titles and posters.
 - **Movie Details**: Show detailed information about a specific movie. (in development)
 - **Authentication**: Allow users to sign up and log in to the application.
+- **Likes**: Allow users to like movies on movies list.
+- **Liked Movies**: Display a list of liked movies by the user.
+
+
+## Developers Features
+
+- **Swagger API Documentation**: Document the API with Swagger at /api-doc.
 
 ## Technologies Used
 
 - [Next.js](https://nextjs.org/) 
 - [React](https://reactjs.org/)
 - [MovieDB API](https://www.themoviedb.org/documentation/api)
+- [MongoDB](https://www.mongodb.com/)
+- [CircleCI](https://circleci.com/)
+- [Swagger](https://swagger.io/)
+- [Jest](https://jestjs.io/)
+- [Vercel](https://vercel.com/)
+- [Material-UI](https://material-ui.com/)
 
 ## Directory Structure
 
