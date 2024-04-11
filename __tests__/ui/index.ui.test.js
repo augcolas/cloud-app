@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import Index from '../../pages/index';
 import { useAuth } from '../../src/contexts/auth.context';
+import {act} from "react-test-renderer";
+import {beforeEach, describe} from "node:test";
 
 const useRouter = jest.spyOn(require('next/router'), 'useRouter');
 useRouter.mockImplementation(() => ({
@@ -8,7 +10,18 @@ useRouter.mockImplementation(() => ({
     ...moreRouterData
 }));
 
+//mock auth context
 jest.mock('../../src/contexts/auth.context');
+
+//mock fetch
+global.fetch = jest.fn(() =>
+    Promise.resolve({
+        json: () => Promise.resolve({ data: { results: [], page: 1, total_pages: 1 } }),
+    })
+);
+
+//mock window.scrollTo
+global.window.scrollTo = jest.fn();
 
 describe('[UI.Component] Index', () => {
     beforeEach(() => {
@@ -17,13 +30,16 @@ describe('[UI.Component] Index', () => {
         });
     });
 
-    xit('should render the index page', () => {
+    it('should render the index page', async() => {
         useAuth.mockReturnValue({
             logout: jest.fn(),
         });
 
-        render(<Index />);
+        await act(async () => {
+            render(<Index />);
+        });
 
-        expect(screen.getByText('Material UI - Next.js example')).toBeInTheDocument();
+
+        expect(screen.getByText('What would you like to discover ?')).toBeInTheDocument();
     });
 });

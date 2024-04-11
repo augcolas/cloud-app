@@ -23,10 +23,11 @@ describe("/api/likes API", () => {
     it("should get like counter for a movie", async () => {
         const { req, res } = createMocks({
             method: "GET",
-            query: { idMovie: 123 },
+            query: { id: 123 },
         });
 
         await handler(req, res);
+
         expect(res.statusCode).toBe(200);
     });
 });
