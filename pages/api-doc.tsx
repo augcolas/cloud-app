@@ -9,7 +9,7 @@ const SwaggerUI = dynamic(() => import('swagger-ui-react'), { ssr: false });
 function ApiDoc({ spec }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <Container sx={{backgroundColor:'#ffffff'}}>
-            <SwaggerUI spec={spec} />;
+            <SwaggerUI spec={spec} />
         </Container>
     )
 }
